@@ -1,0 +1,93 @@
+{
+    "interfaces": {
+        "eth0.1": {
+            "id": "net1",
+            "name": "Network 1",
+            "ports": [
+                {"source": "artnet", "universe": 220, "direction": "input"},
+                {"source": "artnet", "universe": 221, "direction": "input"},
+                {"source": "artnet", "universe": 222, "direction": "input"},
+                {"source": "sacn", "universe": 14, "direction": "input"}
+            ],
+            "data_timeout": 5
+        },
+        "eth0.2": {
+            "id": "net2",
+            "name": "Network 2",
+            "ports": [
+                {"source": "artnet", "universe": 220, "direction": "input"},
+                {"source": "artnet", "universe": 221, "direction": "input"},
+                {"source": "artnet", "universe": 222, "direction": "input"},
+                {"source": "sacn", "universe": 14, "direction": "input"}
+            ],
+            "data_timeout": 2
+        },
+        "eth1": {
+            "id": "net3",
+            "name": "Network 3",
+            "ports": [
+                {"source": "artnet", "universe": 220, "direction": "output"},
+                {"source": "artnet", "universe": 221, "direction": "output"},
+                {"source": "artnet", "universe": 222, "direction": "output"},
+                {"source": "sacn", "universe": 14, "direction": "output"}
+            ],
+            "data_timeout": 3
+        }
+    },
+    "groups": [
+        {
+            "id": "z1",
+            "name": "Zone 1",
+            "sources": [
+                {
+                    "name": "A",
+                    "inputs": [
+                        {"network": "net1", "port": 1},
+                        {"network": "net1", "port": 2},
+                        {"network": "net1", "port": 3}
+                    ]
+                },
+                {
+                    "name": "B",
+                    "inputs": [
+                        {"network": "net1", "port": 4},
+                        {"network": "net1", "port": 5},
+                        {"network": "net1", "port": 6}
+                    ]
+                },
+                {
+                    "name": "C",
+                    "inputs": [
+                        {"network": "net2", "port": 1},
+                        {"network": "net2", "port": 2},
+                        {"network": "net2", "port": 3}
+                    ]
+                }
+            ],
+            "current_source": 0,
+            "current_preset": 4,
+            "output_rate": 30.0,
+            "outputs": [
+                {
+                    "name": "Universe 1",
+                    "destinations": [
+                        {"network": "net3", "port": 1},
+                        {"network": "net3", "port": 4}
+                    ]
+                },
+                {
+                    "name": "Universe 2",
+                    "destinations": [
+                        {"network": "net3", "port": 2}
+                    ]
+                },
+                {
+                    "name": "Universe 3",
+                    "destinations": [
+                        {"network": "net3", "port": 3}
+                    ]
+                }
+            ]
+        }
+    ]
+}
