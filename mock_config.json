@@ -4,10 +4,10 @@
             "id": "net1",
             "name": "Network 1",
             "ports": [
-                {"source": "artnet", "universe": 220, "direction": "input"},
-                {"source": "artnet", "universe": 221, "direction": "input"},
-                {"source": "artnet", "universe": 222, "direction": "input"},
-                {"source": "sacn", "universe": 14, "direction": "input"}
+                {"source": "artnet", "universe": 220},
+                {"source": "artnet", "universe": 221},
+                {"source": "artnet", "universe": 222},
+                {"source": "sacn", "universe": 14}
             ],
             "data_timeout": 5
         },
@@ -15,10 +15,10 @@
             "id": "net2",
             "name": "Network 2",
             "ports": [
-                {"source": "artnet", "universe": 220, "direction": "input"},
-                {"source": "artnet", "universe": 221, "direction": "input"},
-                {"source": "artnet", "universe": 222, "direction": "input"},
-                {"source": "sacn", "universe": 14, "direction": "input"}
+                {"source": "artnet", "universe": 220},
+                {"source": "artnet", "universe": 221},
+                {"source": "artnet", "universe": 222},
+                {"source": "sacn", "universe": 14}
             ],
             "data_timeout": 2
         },
@@ -26,10 +26,10 @@
             "id": "net3",
             "name": "Network 3",
             "ports": [
-                {"source": "artnet", "universe": 220, "direction": "output"},
-                {"source": "artnet", "universe": 221, "direction": "output"},
-                {"source": "artnet", "universe": 222, "direction": "output"},
-                {"source": "sacn", "universe": 14, "direction": "output"}
+                {"source": "artnet", "universe": 220},
+                {"source": "artnet", "universe": 221},
+                {"source": "artnet", "universe": 222},
+                {"source": "sacn", "universe": 14}
             ],
             "data_timeout": 3
         }
@@ -50,17 +50,17 @@
                 {
                     "name": "B",
                     "inputs": [
-                        {"network": "net1", "port": 4},
-                        {"network": "net1", "port": 5},
-                        {"network": "net1", "port": 6}
+                        {"network": "net2", "port": 1},
+                        {"network": "net2", "port": 2},
+                        {"network": "net2", "port": 3}
                     ]
                 },
                 {
                     "name": "C",
                     "inputs": [
-                        {"network": "net2", "port": 1},
-                        {"network": "net2", "port": 2},
-                        {"network": "net2", "port": 3}
+                        {"network": "net3", "port": 1},
+                        {"network": "net3", "port": 2},
+                        {"network": "net3", "port": 3}
                     ]
                 }
             ],
@@ -71,20 +71,21 @@
                 {
                     "name": "Universe 1",
                     "destinations": [
-                        {"network": "net3", "port": 1},
-                        {"network": "net3", "port": 4}
+                        {"network": "net3", "type": "artnet", "universe": 101, "broadcast": true, "unicast": [], "override_rate": null, "use_override": false},
+                        {"network": "net3", "type": "sacn", "universe": 101, "broadcast": false, "unicast": ["10.10.9.1", "10.10.9.2"], "override_rate": 5.0, "use_override": false},
+                        {"network": "net3", "type": "sacn", "universe": 102, "broadcast": true, "unicast": ["10.10.9.5"], "override_rate": 12.0, "use_override": true}
                     ]
                 },
                 {
                     "name": "Universe 2",
                     "destinations": [
-                        {"network": "net3", "port": 2}
+                        {"network": "net3", "type": "artnet", "universe": 102, "broadcast": true, "unicast": []}
                     ]
                 },
                 {
                     "name": "Universe 3",
                     "destinations": [
-                        {"network": "net3", "port": 3}
+                        {"network": "net3", "type": "artnet", "universe": 103, "broadcast": true, "unicast": []},
                     ]
                 }
             ]
